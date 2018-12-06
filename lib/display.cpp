@@ -35,19 +35,18 @@ bool Display::init() {
   return success;
 }
 
-bool Display::hasUserQuit(SDL_Event e) {
-  if(e.type == SDL_QUIT) {
-    return true;
+void Display::hasUserQuit() {
+  while(SDL_PollEvent(&e) != 0 ) {
+    if(e.type == SDL_QUIT) {
+      quit = true;
+    }
   }
-  return false;
 }
 
 void Display::run() {
   init();
   while(!quit) {
-    while(SDL_PollEvent(&e) != 0 ) {
-      quit = hasUserQuit(e);
-    }
+    hasUserQuit();
     screenSurface = SDL_GetWindowSurface(window);
     SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFA, 0x11, 0x02));
     SDL_UpdateWindowSurface(window);

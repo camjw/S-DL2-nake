@@ -15,7 +15,7 @@ class Display {
     void run();
 
   private:
-    bool hasUserQuit(SDL_Event e);
+    void hasUserQuit();
     void close();
     bool init();
 };
