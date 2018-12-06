@@ -15,8 +15,6 @@ SDL_Surface* Display::loadImage(const char* filename) {
 }
 
 void Display::close() {
-  SDL_FreeSurface(displayedImage);
-  displayedImage = NULL;
   SDL_DestroyWindow(window);
   window = NULL;
   SDL_Quit();
