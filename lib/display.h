@@ -11,10 +11,13 @@ class Display {
 
   public:
     Display(int width, int height);
-    bool init();
     SDL_Surface* loadImage(const char* filename);
-    void close();
     void run();
+
+  private:
+    bool hasUserQuit(SDL_Event e);
+    void close();
+    bool init();
 };
 
 #endif
