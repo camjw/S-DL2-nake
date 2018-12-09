@@ -1,13 +1,13 @@
 #ifndef SHIP_H
 #define SHIP_H
-#include "window.h">
+#include "window.h"
 
 class Ship : public Window {
 
   public:
-    Rect(const Window &window, int w, int h, int pos_x, int pos_y, int r, int g, int b, int a);
+    Ship(const Window &window, int w, int h, int pos_x, int pos_y, int r, int g, int b, int a);
     void draw() const;
-    void pollEvents();
+    void pollEvents(SDL_Event &event);
 
   private:
     int _w, _h;
