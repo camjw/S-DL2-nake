@@ -16,15 +16,23 @@ void Ship::draw() const {
 
   SDL_SetRenderDrawColor(_renderer, 200, 0, 200, 205);
   SDL_RenderFillRect(_renderer, &rect);
-  // std::cout << _w << " " << _h << _pos_x << _pos_y << std::endl;
 }
 
-// void Ship::pollEvents(SDL_Event &event) {
-//   if (event.type == SDL_KEYDOWN) {
-//     switch (event.key.keysym.sym) {
-//       case SDLK_LEFT:
-//         _pos_x -= 10;
-//         break;
-//     }
-//   }
-// }
+void Ship::pollEvents(SDL_Event &event) {
+  if (event.type == SDL_KEYDOWN) {
+    switch (event.key.keysym.sym) {
+      case SDLK_LEFT:
+        _x -= 10;
+        break;
+      case SDLK_RIGHT:
+        _x += 10;
+        break;
+      case SDLK_UP:
+        _y -= 10;
+        break;
+      case SDLK_DOWN:
+        _y += 10;
+        break;
+    }
+  }
+}

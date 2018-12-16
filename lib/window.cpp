@@ -44,24 +44,21 @@ bool Window::init() {
   return true;
 }
 
-void Window::pollEvents() {
-  SDL_Event event;
-  if (SDL_PollEvent(&event)) {
-    switch (event.type) {
-      case SDL_QUIT:
-        _closed = true;
-        break;
+void Window::pollEvents(SDL_Event &event) {
+  switch (event.type) {
+    case SDL_QUIT:
+      _closed = true;
+      break;
 
-      case SDL_KEYDOWN:
-        switch (event.key.keysym.sym) {
-          case SDLK_ESCAPE:
-            _closed = true;
-            break;
-        }
+    case SDL_KEYDOWN:
+      switch (event.key.keysym.sym) {
+        case SDLK_ESCAPE:
+          _closed = true;
+          break;
+      }
 
-      default:
-        break;
-    }
+    default:
+      break;
   }
 }
 
