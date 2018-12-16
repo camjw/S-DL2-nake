@@ -8,7 +8,7 @@ public:
   Window(const std::string &title, int width, int height);
   ~Window();
 
-  void pollEvents(SDL_Event &event);
+  void pollEvents();
   void clear() const;
   inline bool isClosed() const { return _closed; }
 
@@ -23,7 +23,6 @@ private:
 
 protected:
   SDL_Renderer *_renderer = nullptr;
-
 };
 
 #endif
