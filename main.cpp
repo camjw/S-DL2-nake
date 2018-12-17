@@ -15,7 +15,7 @@ void pollEvents(Window &window, Ship &ship) {
 
 int main( int argc, char* args[] ) {
   Window window("Asteroids", 800, 600);
-  Ship ship(window, 120, 120, 100, 100, 200, 0, 200, 255);
+  Ship ship(window, 20, 20, 10, 10, 200, 0, 200, 255);
 
   while (!window.isClosed()) {
     pollEvents(window, ship);
