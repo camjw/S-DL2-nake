@@ -2,9 +2,9 @@
 #define SHIP_H
 #include "window.h"
 
-class Ship : public Window {
+class Snake : public Window {
   public:
-    Ship(const Window &window, int w, int h, int x, int y, int r, int g, int b, int a);
+    Snake(const Window &window, int w, int h, int x, int y, int r, int g, int b, int a);
     void draw();
     void move();
     void pollEvents(SDL_Event &event);
