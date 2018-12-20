@@ -30,24 +30,20 @@ void Snake::pollEvents(SDL_Event &event) {
   if (event.type == SDL_KEYDOWN) {
     switch (event.key.keysym.sym) {
       case SDLK_LEFT:
-        _dx = -1;
+        _dx = -_w;
         _dy = 0;
         break;
       case SDLK_RIGHT:
-        _dx = +1;
+        _dx = _w;
         _dy = 0;
         break;
       case SDLK_UP:
-        _dy = -1;
+        _dy = -_w;
         _dx = 0;
         break;
       case SDLK_DOWN:
-        _dy = +1;
+        _dy = _w;
         _dx = 0;
-        break;
-      default:
-        _dx = std::max(0, _dx - 1);
-        _dy = std::max(0, _dy - 1);
         break;
     }
   }

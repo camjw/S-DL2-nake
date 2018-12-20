@@ -9,7 +9,7 @@ class Window {
     ~Window();
 
     void pollEvents(SDL_Event &event);
-    void clear() const;
+    void draw() const;
     inline bool isClosed() const { return _closed; }
 
   private:
