@@ -21,7 +21,7 @@ const int SCREEN_FPS = 1;
 const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
 
 int main( int argc, char* args[] ) {
-  Window window("Asteroids", SCREEN_WIDTH, SCREEN_HEIGHT);
+  Window window("Snake", SCREEN_WIDTH, SCREEN_HEIGHT);
   Snake snake(window, 20, 20, 10, 10, 255, 255, 255, 255);
   Timer fpsTimer;
   Timer capTimer;
