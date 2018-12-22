@@ -10,20 +10,33 @@ Snake::Snake(const Window &window, int w, int h, int x, int y, int r, int g, int
 
 void Snake::draw() {
   move();
-  SDL_Rect rect;
 
-  rect.w = _w;
-  rect.h = _h;
-  rect.x = _x;
-  rect.y = _y;
+  for (int i = 0; i < positionHistory.size(); ++i) {
+    std::vector<int> currentSquare = positionHistory.at(i);
 
-  SDL_SetRenderDrawColor(_renderer, _r, _g, _b, _a);
-  SDL_RenderFillRect(_renderer, &rect);
+    SDL_Rect rect;
+
+    rect.w = _w;
+    rect.h = _h;
+    rect.x = currentSquare.at(0);
+    rect.y = currentSquare.at(1);
+
+    SDL_SetRenderDrawColor(_renderer, _r, _g, _b, _a);
+    SDL_RenderFillRect(_renderer, &rect);
+  }
+}
+
+void Snake::updatePositionHistory() {
+  positionHistory.push_back(std::vector<int> { _x, _y });
+  if (positionHistory.size() > _currentLength) {
+    positionHistory.pop_front();
+  }
 }
 
 void Snake::move() {
   _x += _dx;
   _y += _dy;
+  updatePositionHistory();
 }
 
 void Snake::pollEvents(SDL_Event &event) {

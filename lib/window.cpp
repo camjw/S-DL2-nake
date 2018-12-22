@@ -35,7 +35,7 @@ bool Window::init() {
     return 0;
   }
 
-  _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
+  _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
   if (_renderer == nullptr) {
     std::cerr << "SDL failed to create renderer" << std::endl;
