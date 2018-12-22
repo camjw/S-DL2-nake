@@ -17,7 +17,7 @@ void pollEvents(Window &window, Snake &snake) {
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
-const int SCREEN_FPS = 12;
+const int SCREEN_FPS = 24;
 const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
 
 int main( int argc, char* args[] ) {
@@ -28,18 +28,21 @@ int main( int argc, char* args[] ) {
 
   int countedFrames = 0;
   fpsTimer.start();
-
+  bool updateDisplay = true;
   while (!window.isClosed()) {
     capTimer.start();
     pollEvents(window, snake);
-    snake.draw();
-    window.draw();
+    if (updateDisplay) {
+      snake.draw();
+      window.draw();
+    }
     float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
     ++countedFrames;
     int frameTicks = capTimer.getTicks();
     if(frameTicks < SCREEN_TICKS_PER_FRAME) {
       SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTicks);
     }
+    updateDisplay = !updateDisplay;
   }
 
   return 0;

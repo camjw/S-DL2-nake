@@ -11,9 +11,12 @@ class Snake : public Window {
     void draw();
     void move();
     void pollEvents(SDL_Event &event);
+    enum Directions { UP, DOWN, LEFT, RIGHT };
 
   private:
     void updatePositionHistory();
+    void updateDirection(Directions dir);
+    Directions currentDir;
     int _currentLength = 4;
     int _w, _h;
     int _x, _y;

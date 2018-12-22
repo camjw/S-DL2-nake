@@ -16,10 +16,10 @@ void Snake::draw() {
 
     SDL_Rect rect;
 
-    rect.w = _w;
-    rect.h = _h;
-    rect.x = currentSquare.at(0);
-    rect.y = currentSquare.at(1);
+    rect.w = _w - 2;
+    rect.h = _h - 2 ;
+    rect.x = currentSquare.at(0) + 1;
+    rect.y = currentSquare.at(1) + 1;
 
     SDL_SetRenderDrawColor(_renderer, _r, _g, _b, _a);
     SDL_RenderFillRect(_renderer, &rect);
@@ -33,6 +33,26 @@ void Snake::updatePositionHistory() {
   }
 }
 
+void Snake::updateDirection(Directions dir) {
+  if (dir == LEFT && currentDir != RIGHT) {
+    _dx = -_w;
+    _dy = 0;
+    currentDir = LEFT;
+  } else if (dir == RIGHT && currentDir != LEFT) {
+    _dx = _w;
+    _dy = 0;
+    currentDir = RIGHT;
+  } else if (dir == UP && currentDir != DOWN) {
+    _dx = 0;
+    _dy = -_h;
+    currentDir = UP;
+  } else if (dir == DOWN && currentDir != UP) {
+    _dx = 0;
+    _dy = _h;
+    currentDir = DOWN;
+  }
+}
+
 void Snake::move() {
   _x += _dx;
   _y += _dy;
@@ -43,20 +63,16 @@ void Snake::pollEvents(SDL_Event &event) {
   if (event.type == SDL_KEYDOWN) {
     switch (event.key.keysym.sym) {
       case SDLK_LEFT:
-        _dx = -_w;
-        _dy = 0;
+        updateDirection(LEFT);
         break;
       case SDLK_RIGHT:
-        _dx = _w;
-        _dy = 0;
+        updateDirection(RIGHT);
         break;
       case SDLK_UP:
-        _dy = -_w;
-        _dx = 0;
+        updateDirection(UP);
         break;
       case SDLK_DOWN:
-        _dy = _w;
-        _dx = 0;
+        updateDirection(DOWN);
         break;
     }
   }
