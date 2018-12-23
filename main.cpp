@@ -21,9 +21,8 @@ void checkCollisions(Snake &snake, Food &food) {
   std::vector<int> foodLocation = food.getLocation();
 
   if (foodLocation[0] == snakeLocation[0] && foodLocation[1] == snakeLocation[1]) {
-    food.resetLocation();
+    food.resetLocation(snakeLocation);
     snake.grow();
-    std::cout << "HIT" << std::endl;
   }
 }
 

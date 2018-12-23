@@ -25,7 +25,11 @@ std::vector<int> Food::getLocation() {
   return location;
 };
 
-void Food::resetLocation() {
+void Food::resetLocation(std::vector<int> snakeLocation) {
   location[0] = (rand() % _grid_w) * _grid_stride;
   location[1] = (rand() % _grid_h) * _grid_stride;
+
+  if (snakeLocation[0] == location[0] || snakeLocation[1] == location[1]) {
+    resetLocation(snakeLocation);
+  }
 }
