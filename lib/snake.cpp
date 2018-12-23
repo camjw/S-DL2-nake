@@ -2,10 +2,8 @@
 #include <iostream>
 
 Snake::Snake(const Window &window, int w, int h, int x, int y, int r, int g, int b, int a) :
-  Window(window), _w(w), _h(h), _x(x), _y(y), _r(r), _g(g), _b(b), _a(a)
+  Window(window), _w(w), _h(h), _x(x), _y(y), _r(r), _g(g), _b(b), _a(a), _dx(0), _dy(0)
 {
-  _dx = 0;
-  _dy = 0;
 }
 
 void Snake::draw() {
@@ -17,7 +15,7 @@ void Snake::draw() {
     SDL_Rect rect;
 
     rect.w = _w - 2;
-    rect.h = _h - 2 ;
+    rect.h = _h - 2;
     rect.x = currentSquare.at(0) + 1;
     rect.y = currentSquare.at(1) + 1;
 

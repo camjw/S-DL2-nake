@@ -1,7 +1,5 @@
 #include <iostream>
-#include <SDL2/SDL.h>
 #include "window.h"
-#include "iostream"
 
 Window::Window(const std::string &title, int width, int height) :
 _title(title), _width(width), _height(height)

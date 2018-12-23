@@ -5,6 +5,7 @@
 #include "lib/window.h"
 #include "lib/snake.h"
 #include "lib/timer.h"
+#include "lib/food.h"
 
 void pollEvents(Window &window, Snake &snake) {
   SDL_Event event;
@@ -15,14 +16,16 @@ void pollEvents(Window &window, Snake &snake) {
   }
 }
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+const int GRID_WIDTH = 40;
+const int GRID_HEIGHT = 30;
+const int GRID_STRIDE = 20;
 const int SCREEN_FPS = 24;
 const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
 
 int main( int argc, char* args[] ) {
-  Window window("Snake", SCREEN_WIDTH, SCREEN_HEIGHT);
-  Snake snake(window, 20, 20, 10, 10, 255, 255, 255, 255);
+  Window window("Snake", GRID_WIDTH * GRID_STRIDE, GRID_HEIGHT * GRID_STRIDE);
+  Snake snake(window, 20, 20, 20, 20, 255, 255, 255, 255);
+  Food food(window, GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE, 192, 192, 192, 255, time(0));
   Timer fpsTimer;
   Timer capTimer;
 
@@ -35,6 +38,7 @@ int main( int argc, char* args[] ) {
     if (updateDisplay) {
       snake.draw();
       window.draw();
+      food.draw();
     }
     float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
     ++countedFrames;

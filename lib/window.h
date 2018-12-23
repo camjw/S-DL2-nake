@@ -6,14 +6,14 @@
 class Window {
   public:
     Window(const std::string &title, int width, int height);
-    ~Window();
+    virtual ~Window();
 
-    void pollEvents(SDL_Event &event);
-    void draw() const;
-    inline bool isClosed() const { return _closed; }
+    virtual void pollEvents(SDL_Event &event);
+    virtual void draw() const;
+    virtual inline bool isClosed() const { return _closed; }
 
   private:
-    bool init();
+    virtual bool init();
     std::string _title;
     int _width = 800;
     int _height = 600;

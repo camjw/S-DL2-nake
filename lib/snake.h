@@ -7,15 +7,15 @@
 class Snake : public Window {
   public:
     Snake(const Window &window, int w, int h, int x, int y, int r, int g, int b, int a);
+    virtual void draw();
+    virtual void move();
+    virtual void pollEvents(SDL_Event &event);
     std::deque<std::vector<int>> positionHistory;
-    void draw();
-    void move();
-    void pollEvents(SDL_Event &event);
     enum directions { UP, DOWN, LEFT, RIGHT };
 
   private:
-    void updatePositionHistory();
-    void updateDirection(directions dir);
+    virtual void updatePositionHistory();
+    virtual void updateDirection(directions dir);
     directions currentDir;
     bool acceptingMove = true;
     int _currentLength = 4;

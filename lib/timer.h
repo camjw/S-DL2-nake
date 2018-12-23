@@ -5,13 +5,13 @@
 class Timer {
   public:
     Timer();
-    void start();
-    void stop();
-    void pause();
-    void unpause();
-    Uint32 getTicks();
-    bool isStarted();
-    bool isPaused();
+    virtual void start();
+    virtual void stop();
+    virtual void pause();
+    virtual void unpause();
+    virtual Uint32 getTicks();
+    virtual bool isStarted();
+    virtual bool isPaused();
 
   private:
     Uint32 _StartTicks;
