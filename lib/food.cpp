@@ -1,4 +1,5 @@
 #include "food.h"
+#include <algorithm>
 #include <iostream>
 
 Food::Food(const Window &window, int grid_w, int grid_h, int grid_stride, int r, int g, int b, int a, int random_seed) :
@@ -25,11 +26,11 @@ std::vector<int> Food::getLocation() {
   return location;
 };
 
-void Food::resetLocation(std::vector<int> snakeLocation) {
+void Food::resetLocation(std::deque<std::vector<int>> snakeLocationHistory) {
   location[0] = (rand() % _grid_w) * _grid_stride;
   location[1] = (rand() % _grid_h) * _grid_stride;
 
-  if (snakeLocation[0] == location[0] || snakeLocation[1] == location[1]) {
-    resetLocation(snakeLocation);
+  if (std::find(snakeLocationHistory.begin(), snakeLocationHistory.end(), location) != snakeLocationHistory.end()) {
+    resetLocation(snakeLocationHistory);
   }
 }

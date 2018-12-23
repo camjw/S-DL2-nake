@@ -63,6 +63,10 @@ std::vector<int> Snake::getLocation() {
   return std::vector<int> { _x, _y };
 }
 
+std::deque<std::vector<int>> Snake::getLocationHistory() {
+  return locationHistory;
+}
+
 void Snake::grow() {
   _currentLength += 4;
 }

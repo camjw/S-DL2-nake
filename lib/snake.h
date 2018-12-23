@@ -11,13 +11,14 @@ class Snake : public Window {
     virtual void move();
     virtual void pollEvents(SDL_Event &event);
     std::vector<int> getLocation();
-    std::deque<std::vector<int>> locationHistory;
+    std::deque<std::vector<int>> getLocationHistory();
     enum directions { UP, DOWN, LEFT, RIGHT };
     virtual void grow();
-    
+
   private:
     virtual void updateLocationHistory();
     virtual void updateDirection(directions dir);
+    std::deque<std::vector<int>> locationHistory;
     directions currentDir;
     bool acceptingMove = true;
     int _currentLength = 4;

@@ -19,9 +19,10 @@ void pollEvents(Window &window, Snake &snake) {
 void checkCollisions(Snake &snake, Food &food) {
   std::vector<int> snakeLocation = snake.getLocation();
   std::vector<int> foodLocation = food.getLocation();
+  std::deque<std::vector<int>> snakeLocationHistory = snake.getLocationHistory();
 
   if (foodLocation[0] == snakeLocation[0] && foodLocation[1] == snakeLocation[1]) {
-    food.resetLocation(snakeLocation);
+    food.resetLocation(snakeLocationHistory);
     snake.grow();
   }
 }
