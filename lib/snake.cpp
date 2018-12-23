@@ -9,8 +9,8 @@ Snake::Snake(const Window &window, int w, int h, int x, int y, int r, int g, int
 void Snake::draw() {
   move();
 
-  for (int i = 0; i < positionHistory.size(); ++i) {
-    std::vector<int> currentSquare = positionHistory.at(i);
+  for (int i = 0; i < locationHistory.size(); ++i) {
+    std::vector<int> currentSquare = locationHistory.at(i);
 
     SDL_Rect rect;
 
@@ -25,10 +25,10 @@ void Snake::draw() {
   acceptingMove = true;
 }
 
-void Snake::updatePositionHistory() {
-  positionHistory.push_back(std::vector<int> { _x, _y });
-  if (positionHistory.size() > _currentLength) {
-    positionHistory.pop_front();
+void Snake::updateLocationHistory() {
+  locationHistory.push_back(std::vector<int> { _x, _y });
+  if (locationHistory.size() > _currentLength) {
+    locationHistory.pop_front();
   }
 }
 
@@ -56,7 +56,15 @@ void Snake::updateDirection(directions dir) {
 void Snake::move() {
   _x += _dx;
   _y += _dy;
-  updatePositionHistory();
+  updateLocationHistory();
+}
+
+std::vector<int> Snake::getLocation() {
+  return std::vector<int> { _x, _y };
+}
+
+void Snake::grow() {
+  _currentLength += 4;
 }
 
 void Snake::pollEvents(SDL_Event &event) {

@@ -16,6 +16,17 @@ void pollEvents(Window &window, Snake &snake) {
   }
 }
 
+void checkCollisions(Snake &snake, Food &food) {
+  std::vector<int> snakeLocation = snake.getLocation();
+  std::vector<int> foodLocation = food.getLocation();
+
+  if (foodLocation[0] == snakeLocation[0] && foodLocation[1] == snakeLocation[1]) {
+    food.resetLocation();
+    snake.grow();
+    std::cout << "HIT" << std::endl;
+  }
+}
+
 const int GRID_WIDTH = 40;
 const int GRID_HEIGHT = 30;
 const int GRID_STRIDE = 20;
@@ -39,6 +50,7 @@ int main( int argc, char* args[] ) {
       snake.draw();
       window.draw();
       food.draw();
+      checkCollisions(snake, food);
     }
     float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
     ++countedFrames;
