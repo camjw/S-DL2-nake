@@ -2,11 +2,12 @@
 #define SNAKE_H
 #include <vector>
 #include <deque>
+#include <algorithm>
 #include "window.h"
 
 class Snake : public Window {
   public:
-    Snake(const Window &window, int w, int h, int x, int y, int r, int g, int b, int a);
+    Snake(const Window &window, int stride, int x, int y, int r, int g, int b, int a);
     virtual void draw();
     virtual void move();
     virtual void pollEvents(SDL_Event &event);
@@ -14,15 +15,18 @@ class Snake : public Window {
     std::deque<std::vector<int>> getLocationHistory();
     enum directions { UP, DOWN, LEFT, RIGHT };
     virtual void grow();
+    std::vector<int> checkSelfEat();
+    bool isDead();
 
   private:
     virtual void updateLocationHistory();
-    virtual void updateDirection(directions dir);
+    virtual void updateDirection();
     std::deque<std::vector<int>> locationHistory;
-    directions currentDir;
+    directions currentDir, attemptedDir;
     bool acceptingMove = true;
+    bool alive = true;
     int _currentLength = 4;
-    int _w, _h;
+    int _stride;
     int _x, _y;
     int _dx, _dy;
     int _r, _g, _b, _a;

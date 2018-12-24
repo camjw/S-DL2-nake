@@ -1,9 +1,12 @@
 #include "snake.h"
 #include <iostream>
 
-Snake::Snake(const Window &window, int w, int h, int x, int y, int r, int g, int b, int a) :
-  Window(window), _w(w), _h(h), _x(x), _y(y), _r(r), _g(g), _b(b), _a(a), _dx(0), _dy(0)
+Snake::Snake(const Window &window, int stride, int x, int y, int r, int g, int b, int a) :
+  Window(window), _stride(stride), _x(x), _y(y), _r(r), _g(g), _b(b), _a(a), _dx(0), _dy(0)
 {
+  currentDir = RIGHT;
+  attemptedDir = RIGHT;
+  alive = true;
 }
 
 void Snake::draw() {
@@ -14,8 +17,8 @@ void Snake::draw() {
 
     SDL_Rect rect;
 
-    rect.w = _w - 2;
-    rect.h = _h - 2;
+    rect.w = _stride - 2;
+    rect.h = _stride - 2;
     rect.x = currentSquare.at(0) + 1;
     rect.y = currentSquare.at(1) + 1;
 
@@ -31,28 +34,29 @@ void Snake::updateLocationHistory() {
   }
 }
 
-void Snake::updateDirection(directions dir) {
-  if (dir == LEFT && currentDir != RIGHT) {
-    _dx = -_w;
+void Snake::updateDirection() {
+  if (attemptedDir == LEFT && currentDir != RIGHT) {
+    _dx = -_stride;
     _dy = 0;
     currentDir = LEFT;
-  } else if (dir == RIGHT && currentDir != LEFT) {
-    _dx = _w;
+  } else if (attemptedDir == RIGHT && currentDir != LEFT) {
+    _dx = _stride;
     _dy = 0;
     currentDir = RIGHT;
-  } else if (dir == UP && currentDir != DOWN) {
+  } else if (attemptedDir == UP && currentDir != DOWN) {
     _dx = 0;
-    _dy = -_h;
+    _dy = -_stride;
     currentDir = UP;
-  } else if (dir == DOWN && currentDir != UP) {
+  } else if (attemptedDir == DOWN && currentDir != UP) {
     _dx = 0;
-    _dy = _h;
+    _dy = _stride;
     currentDir = DOWN;
   }
   acceptingMove = false;
 }
 
 void Snake::move() {
+  updateDirection();
   _x += _dx;
   _y += _dy;
   updateLocationHistory();
@@ -75,18 +79,35 @@ void Snake::pollEvents(SDL_Event &event) {
     if (event.type == SDL_KEYDOWN) {
       switch (event.key.keysym.sym) {
         case SDLK_LEFT:
-        updateDirection(LEFT);
+          attemptedDir = LEFT;
         break;
         case SDLK_RIGHT:
-        updateDirection(RIGHT);
+          attemptedDir = RIGHT;
         break;
         case SDLK_UP:
-        updateDirection(UP);
+          attemptedDir = UP;
         break;
         case SDLK_DOWN:
-        updateDirection(DOWN);
+          attemptedDir = DOWN;
         break;
       }
     }
   }
+}
+
+std::vector<int> Snake::checkSelfEat() {
+  for (int i = 0; i < locationHistory.size() - 1; ++i) {
+    for (int j = i + 1; j < locationHistory.size(); ++j){
+      if (locationHistory[i] == locationHistory[j]) {
+        std::cout << i << j << std::endl;
+        alive = false;
+        return locationHistory[i];
+      }
+    }
+  }
+  return locationHistory[0];
+}
+
+bool Snake::isDead() {
+  return !alive;
 }
