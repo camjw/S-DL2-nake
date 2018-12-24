@@ -65,3 +65,8 @@ void Window::draw() const {
   SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
   SDL_RenderClear(_renderer);
 }
+
+void Window::renderRect(SDL_Rect rect, int r, int g, int b, int a) {
+  SDL_SetRenderDrawColor(_renderer, r, g, b, a);
+  SDL_RenderFillRect(_renderer, &rect);
+}

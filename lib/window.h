@@ -11,6 +11,7 @@ class Window {
     virtual void pollEvents(SDL_Event &event);
     virtual void draw() const;
     virtual inline bool isClosed() const { return _closed; }
+    void renderRect(SDL_Rect rect, int r, int g, int b, int a);
 
   private:
     virtual bool init();
