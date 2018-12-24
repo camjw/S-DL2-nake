@@ -1,1 +1,7 @@
 language: cpp
+
+script:
+  - make game
+
+compiler:
+  - gcc
