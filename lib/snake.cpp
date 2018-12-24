@@ -19,8 +19,7 @@ void Snake::draw() {
     rect.x = currentSquare.at(0) + 1;
     rect.y = currentSquare.at(1) + 1;
 
-    SDL_SetRenderDrawColor(_renderer, _r, _g, _b, _a);
-    SDL_RenderFillRect(_renderer, &rect);
+    renderRect(rect, _r, _g, _b, _a);
   }
   acceptingMove = true;
 }

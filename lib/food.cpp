@@ -18,8 +18,7 @@ void Food::draw() {
   rect.x = location[0] + 1;
   rect.y = location[1] + 1;
 
-  SDL_SetRenderDrawColor(_renderer, _r, _g, _b, _a);
-  SDL_RenderFillRect(_renderer, &rect);
+  renderRect(rect, _r, _g, _b, _a);
 };
 
 std::vector<int> Food::getLocation() {
@@ -33,4 +32,4 @@ void Food::resetLocation(std::deque<std::vector<int>> snakeLocationHistory) {
   if (std::find(snakeLocationHistory.begin(), snakeLocationHistory.end(), location) != snakeLocationHistory.end()) {
     resetLocation(snakeLocationHistory);
   }
-}
+};
