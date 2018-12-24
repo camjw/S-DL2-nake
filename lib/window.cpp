@@ -66,7 +66,14 @@ void Window::draw() const {
   SDL_RenderClear(_renderer);
 }
 
-void Window::renderRect(SDL_Rect rect, int r, int g, int b, int a) {
+void Window::renderRect(std::vector<int> rectCoords, int stride, int r, int g, int b, int a) {
+  SDL_Rect rect;
+
+  rect.w = stride - 2;
+  rect.h = stride - 2;
+  rect.x = rectCoords.at(0) + 1;
+  rect.y = rectCoords.at(1) + 1;
+
   SDL_SetRenderDrawColor(_renderer, r, g, b, a);
   SDL_RenderFillRect(_renderer, &rect);
 }

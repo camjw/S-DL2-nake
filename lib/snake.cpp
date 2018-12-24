@@ -11,18 +11,8 @@ Snake::Snake(const Window &window, int stride, int x, int y, int r, int g, int b
 
 void Snake::draw() {
   move();
-
   for (int i = 0; i < locationHistory.size(); ++i) {
-    std::vector<int> currentSquare = locationHistory.at(i);
-
-    SDL_Rect rect;
-
-    rect.w = _stride - 2;
-    rect.h = _stride - 2;
-    rect.x = currentSquare.at(0) + 1;
-    rect.y = currentSquare.at(1) + 1;
-
-    renderRect(rect, _r, _g, _b, _a);
+    renderRect(locationHistory.at(i), _stride, _r, _g, _b, _a);
   }
   acceptingMove = true;
 }
@@ -99,7 +89,6 @@ std::vector<int> Snake::checkSelfEat() {
   for (int i = 0; i < locationHistory.size() - 1; ++i) {
     for (int j = i + 1; j < locationHistory.size(); ++j){
       if (locationHistory[i] == locationHistory[j]) {
-        std::cout << i << j << std::endl;
         alive = false;
         return locationHistory[i];
       }
@@ -110,4 +99,12 @@ std::vector<int> Snake::checkSelfEat() {
 
 bool Snake::isDead() {
   return !alive;
+}
+
+void Snake::showDeath() {
+  for (int i = 0; i < locationHistory.size() - 1; ++i) {
+    renderRect(locationHistory.at(i), _stride, _r, _g, _b, _a);
+  }
+  std::vector<int> deathSquare = locationHistory[locationHistory.size() -1];
+  renderRect(deathSquare, _stride, 255, 0, 0, 255);
 }

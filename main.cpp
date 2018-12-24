@@ -34,8 +34,8 @@ const int SCREEN_FPS = 24;
 const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
 
 int main( int argc, char* args[] ) {
-  Window window("Snake", GRID_WIDTH * GRID_STRIDE, GRID_HEIGHT * GRID_STRIDE);
-  Snake snake(window, 20, 20, 20, 20, 255, 255, 255, 255);
+  Window window("Snake", GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE);
+  Snake snake(window, GRID_STRIDE, 20, 20, 255, 255, 255, 255);
   Food food(window, GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE, 192, 192, 192, 255, time(0));
   Timer fpsTimer;
   Timer capTimer;
@@ -46,11 +46,16 @@ int main( int argc, char* args[] ) {
   while (!window.isClosed()) {
     capTimer.start();
     pollEvents(window, snake);
-    if (updateDisplay) {
-      snake.draw();
+    if (updateDisplay && !snake.isDead()) {
       window.draw();
+      snake.draw();
       food.draw();
       checkCollisions(snake, food);
+      snake.checkSelfEat();
+    }
+    if (snake.isDead()) {
+      window.draw();
+      snake.showDeath();
     }
     float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
     ++countedFrames;

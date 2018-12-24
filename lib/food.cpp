@@ -11,14 +11,7 @@ Window(window), _grid_w(grid_w), _grid_h(grid_h), _grid_stride(grid_stride), _r(
 };
 
 void Food::draw() {
-  SDL_Rect rect;
-
-  rect.w = 18;
-  rect.h = 18;
-  rect.x = location[0] + 1;
-  rect.y = location[1] + 1;
-
-  renderRect(rect, _r, _g, _b, _a);
+  renderRect(location, _grid_stride, _r, _g, _b, _a);
 };
 
 std::vector<int> Food::getLocation() {
