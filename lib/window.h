@@ -5,7 +5,7 @@
 
 class Window {
   public:
-    Window(const std::string &title, int width, int height);
+    Window(const std::string &title, int width, int height, int stride);
     virtual ~Window();
 
     virtual void pollEvents(SDL_Event &event);
@@ -16,8 +16,9 @@ class Window {
   private:
     virtual bool init();
     std::string _title;
-    int _width = 800;
-    int _height = 600;
+    int _width;
+    int _height;
+    int _stride;
     bool _closed = false;
 
     SDL_Window *_window = nullptr;

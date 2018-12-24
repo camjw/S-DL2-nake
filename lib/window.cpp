@@ -1,8 +1,8 @@
 #include <iostream>
 #include "window.h"
 
-Window::Window(const std::string &title, int width, int height) :
-_title(title), _width(width), _height(height)
+Window::Window(const std::string &title, int width, int height, int stride) :
+_title(title), _width(width), _height(height), _stride(stride)
 {
   _closed = !init();
 }
@@ -23,8 +23,8 @@ bool Window::init() {
     _title.c_str(),
     SDL_WINDOWPOS_CENTERED,
     SDL_WINDOWPOS_CENTERED,
-    _width,
-    _height,
+    _width * _stride,
+    _height * _stride,
     0
   );
 

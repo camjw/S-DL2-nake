@@ -32,4 +32,6 @@ void Food::resetLocation(std::deque<std::vector<int>> snakeLocationHistory) {
   if (std::find(snakeLocationHistory.begin(), snakeLocationHistory.end(), location) != snakeLocationHistory.end()) {
     resetLocation(snakeLocationHistory);
   }
-};
+}
+
+Food::~Food() {};
