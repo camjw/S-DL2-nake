@@ -18,6 +18,7 @@ class Snake : public Window {
     std::vector<int> checkSelfEat();
     bool isDead();
     virtual void showDeath();
+    virtual ~Snake() {};
 
   private:
     virtual void updateLocationHistory();

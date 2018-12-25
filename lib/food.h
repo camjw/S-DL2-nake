@@ -11,7 +11,7 @@ class Food : public Window {
     virtual void draw();
     std::vector<int> getLocation();
     void resetLocation(std::deque<std::vector<int>> snakeLocationHistory);
-    ~Food();
+    virtual ~Food();
 
   private:
     std::vector<int> location;

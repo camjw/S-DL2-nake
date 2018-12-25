@@ -12,6 +12,7 @@ class Timer {
     virtual Uint32 getTicks();
     virtual bool isStarted();
     virtual bool isPaused();
+    virtual ~Timer() {};
 
   private:
     Uint32 _StartTicks;
