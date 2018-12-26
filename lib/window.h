@@ -8,7 +8,6 @@ class Window {
   public:
     Window(const std::string &title, int width, int height, int stride);
     virtual ~Window();
-
     virtual void pollEvents(SDL_Event &event);
     virtual void draw() const;
     virtual inline bool isClosed() const { return _closed; }
