@@ -8,7 +8,7 @@
 
 class Game {
   public:
-    Game(int g_width, int g_height, int g_stride, int fps);
+    Game(Window *w, Snake *s, Food *f, Timer *fps, Timer *cap, int g_width, int g_height, int g_stride, int screen_fps);
     virtual ~Game() {};
     void pollEvents();
     void checkCollisions();
@@ -18,9 +18,9 @@ class Game {
     void redrawScreen();
     void showSnakeDeath();
     void adjustFrameRate(int countedFrames);
-    int grid_width, grid_height, grid_stride, screen_fps, screen_ticks_per_frame;
-    Window window;
-    Snake snake;
-    Food food;
-    Timer fpsTimer, capTimer;
+    int screen_fps, screen_ticks_per_frame;
+    Window *window;
+    Snake *snake;
+    Food *food;
+    Timer *fpsTimer, *capTimer;
 };
