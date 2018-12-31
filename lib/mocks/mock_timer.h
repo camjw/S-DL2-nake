@@ -11,6 +11,7 @@ class MockTimer : public Timer {
     MOCK_METHOD0(stop, void());
     MOCK_METHOD0(pause, void());
     MOCK_METHOD0(unpause, void());
+    MOCK_METHOD0(getTicks, Uint32());
     MOCK_METHOD0(isStarted, bool());
     MOCK_METHOD0(isPaused, bool());
 };
