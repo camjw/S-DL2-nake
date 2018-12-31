@@ -8,10 +8,10 @@ class Window {
   public:
     Window(const std::string &title, int width, int height, int stride);
     virtual ~Window();
-    virtual void pollEvents(SDL_Event &event);
-    virtual void draw() const;
-    virtual inline bool isClosed() const { return _closed; }
-    virtual void renderRect(std::vector<int> rectCoords, int stride, int r, int g, int b, int a);
+    void pollEvents(SDL_Event &event);
+    void draw() const;
+    inline bool isClosed() const { return _closed; }
+    void renderRect(std::vector<int> rectCoords, int stride, int r, int g, int b, int a);
 
   private:
     virtual bool init();
