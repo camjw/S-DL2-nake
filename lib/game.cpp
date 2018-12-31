@@ -41,14 +41,13 @@ void Game::showSnakeDeath() {
   snake.showDeath();
 }
 
-void Game::adjustFrameRate() {
+void Game::adjustFrameRate(int countedFrames) {
   float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
   ++countedFrames;
   int frameTicks = capTimer.getTicks();
   if(frameTicks < screen_ticks_per_frame) {
     SDL_Delay(screen_ticks_per_frame - frameTicks);
   }
-  updateDisplay = !updateDisplay;
 }
 
 void Game::run() {
@@ -64,6 +63,7 @@ void Game::run() {
     if (snake.isDead()) {
       showSnakeDeath();
     }
-    adjustFrameRate();
+    adjustFrameRate(countedFrames);
+    updateDisplay = !updateDisplay;
   }
 };
