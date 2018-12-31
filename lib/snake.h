@@ -8,21 +8,21 @@
 class Snake : public Window {
   public:
     Snake(const Window &window, int stride, int x, int y, int r, int g, int b, int a);
-    virtual void draw();
-    virtual void move();
-    virtual void pollEvents(SDL_Event &event);
+    void draw();
+    void move();
+    void pollEvents(SDL_Event &event);
     std::vector<int> getLocation();
     std::deque<std::vector<int>> getLocationHistory();
     enum directions { UP, DOWN, LEFT, RIGHT };
-    virtual void grow();
+    void grow();
     std::vector<int> checkSelfEat();
     bool isDead();
-    virtual void showDeath();
+    void showDeath();
     virtual ~Snake() {};
 
   private:
-    virtual void updateLocationHistory();
-    virtual void updateDirection();
+    void updateLocationHistory();
+    void updateDirection();
     std::deque<std::vector<int>> locationHistory;
     directions currentDir, attemptedDir;
     bool acceptingMove = true;

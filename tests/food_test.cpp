@@ -12,12 +12,6 @@ TEST_F(FoodTest, LocationTest)
   EXPECT_THAT(subject.getLocation(), ElementsAre(0, 10));
 }
 
-TEST_F(FoodTest, DrawTest)
-{
-  subject.draw();
-  EXPECT_CALL(mock_window, renderRect(subject.getLocation(), 1, 1, 1, 1, 1)).Times(AtLeast(1));
-}
-
 TEST_F(FoodTest, ResetLocationTest)
 {
   std::deque<std::vector<int>> fakeLocationHistory;

@@ -6,7 +6,7 @@
 #include "lib/snake.h"
 #include "lib/timer.h"
 #include "lib/food.h"
-#include "lib/game.h"
+// #include "lib/game.h"
 
 const int GRID_WIDTH = 40;
 const int GRID_HEIGHT = 30;
@@ -38,7 +38,7 @@ int main( int argc, char* args[] ) {
   Window window("Snake", GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE);
   Snake snake(window, GRID_STRIDE, 20, 20, 255, 255, 255, 255);
   Food food(window, GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE, 192, 192, 192, 255, time(0));
-  Game(GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE, SCREEN_FPS);
+  // Game(GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE, SCREEN_FPS);
   Timer fpsTimer;
   Timer capTimer;
 
