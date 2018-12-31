@@ -7,7 +7,9 @@
 class FoodTest : public ::testing::Test {
   public:
     FoodTest();
-    Food subject;
+    virtual void SetUp();
+    virtual void TearDown();
+    Food * pFood_;
     MockWindow mock_window;
 };
 
