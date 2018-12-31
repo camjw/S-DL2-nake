@@ -24,7 +24,8 @@ class Snake : public Window {
     void updateLocationHistory();
     void updateDirection();
     std::deque<std::vector<int>> locationHistory;
-    directions currentDir, attemptedDir;
+    directions currentDir = RIGHT;
+    directions attemptedDir = RIGHT;
     bool acceptingMove = true;
     bool alive = true;
     int _currentLength = 4;
