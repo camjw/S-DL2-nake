@@ -1,4 +1,3 @@
-#include <vector>
 #include "snake_test.h"
 
 using ::testing::ElementsAre;
