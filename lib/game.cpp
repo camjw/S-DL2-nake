@@ -28,30 +28,42 @@ void Game::checkCollisions() {
   }
 }
 
+void Game::redrawScreen() {
+  window.draw();
+  snake.draw();
+  food.draw();
+  checkCollisions();
+  snake.checkSelfEat();
+}
+
+void Game::showSnakeDeath() {
+  window.draw();
+  snake.showDeath();
+}
+
+void Game::adjustFrameRate() {
+  float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
+  ++countedFrames;
+  int frameTicks = capTimer.getTicks();
+  if(frameTicks < screen_ticks_per_frame) {
+    SDL_Delay(screen_ticks_per_frame - frameTicks);
+  }
+  updateDisplay = !updateDisplay;
+}
+
 void Game::run() {
   int countedFrames = 0;
-    fpsTimer.start();
-    bool updateDisplay = true;
-    while (!window.isClosed()) {
-      capTimer.start();
-      pollEvents();
-      if (updateDisplay && !snake.isDead()) {
-        window.draw();
-        snake.draw();
-        food.draw();
-        checkCollisions();
-        snake.checkSelfEat();
-      }
-      if (snake.isDead()) {
-        window.draw();
-        snake.showDeath();
-      }
-      float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
-      ++countedFrames;
-      int frameTicks = capTimer.getTicks();
-      if(frameTicks < screen_ticks_per_frame) {
-        SDL_Delay(screen_ticks_per_frame - frameTicks);
-      }
-      updateDisplay = !updateDisplay;
+  fpsTimer.start();
+  bool updateDisplay = true;
+  while (!window.isClosed()) {
+    capTimer.start();
+    pollEvents();
+    if (updateDisplay && !snake.isDead()) {
+      redrawScreen();
     }
+    if (snake.isDead()) {
+      showSnakeDeath();
+    }
+    adjustFrameRate();
+  }
 };

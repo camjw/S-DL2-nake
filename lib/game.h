@@ -1,7 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-#include <sstream>
 #include "window.h"
 #include "snake.h"
 #include "timer.h"
@@ -16,6 +15,9 @@ class Game {
     void run();
 
   private:
+    void redrawScreen();
+    void showSnakeDeath();
+    void adjustFrameRate();
     int grid_width, grid_height, grid_stride, screen_fps, screen_ticks_per_frame;
     Window window;
     Snake snake;
