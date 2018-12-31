@@ -7,7 +7,9 @@
 class SnakeTest : public ::testing::Test {
   public:
     SnakeTest();
-    Snake subject;
+    virtual void SetUp();
+    virtual void TearDown();
+    Snake * pSnake_;
     MockWindow mock_window;
 };
 
