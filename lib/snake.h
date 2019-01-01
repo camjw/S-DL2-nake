@@ -11,8 +11,8 @@ class Snake : public Window {
     void draw();
     void move();
     void pollEvents(SDL_Event &event);
-    std::vector<int> getLocation();
-    std::deque<std::vector<int>> getLocationHistory();
+    virtual std::vector<int> getLocation();
+    virtual std::deque<std::vector<int>> getLocationHistory();
     enum directions { UP, DOWN, LEFT, RIGHT };
     void grow();
     std::vector<int> checkSelfEat();
