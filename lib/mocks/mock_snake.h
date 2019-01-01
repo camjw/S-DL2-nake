@@ -13,6 +13,7 @@ class MockSnake : public Snake {
     MOCK_METHOD1(pollEvents, void(SDL_Event &event));
     MOCK_METHOD0(getLocation, std::vector<int>());
     MOCK_METHOD0(getLocationHistory, std::deque<std::vector<int>>());
+    MOCK_METHOD0(grow, void());
 };
 
 #endif

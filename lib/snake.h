@@ -14,7 +14,7 @@ class Snake : public Window {
     virtual std::vector<int> getLocation();
     virtual std::deque<std::vector<int>> getLocationHistory();
     enum directions { UP, DOWN, LEFT, RIGHT };
-    void grow();
+    virtual void grow();
     std::vector<int> checkSelfEat();
     bool isDead();
     void showDeath();
