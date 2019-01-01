@@ -7,6 +7,7 @@ class MockWindow : public Window {
   public:
     MockWindow();
     virtual ~MockWindow() {};
+    MOCK_METHOD1(pollEvents, void(SDL_Event &event));
 };
 
 #endif
