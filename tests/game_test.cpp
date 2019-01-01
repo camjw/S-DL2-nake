@@ -1,5 +1,7 @@
 #include "game_test.h"
 
+using ::testing::Return;
+
 GameTest::GameTest() : mock_window(), mock_snake(mock_window), mock_food(mock_window),
 mock_fps_timer(), mock_cap_timer() {
 };
@@ -12,6 +14,20 @@ void GameTest::TearDown() {
   delete pGame_;
 }
 
-TEST_F(GameTest, FakeTest) {
-  EXPECT_EQ(1,1);
+TEST_F(GameTest, NoEventPollEventsTest) {
+  EXPECT_CALL(mock_snake, pollEvents(testing::_)).Times(0);
+  EXPECT_CALL(mock_window, pollEvents(testing::_)).Times(0);
+  pGame_->pollEvents();
+}
+
+TEST_F(GameTest, CheckCollisionsTest) {
+  ON_CALL(mock_food, getLocation()).WillByDefault(Return(std::vector<int> {20, 20}));
+  ON_CALL(mock_snake, getLocation()).WillByDefault(Return(std::vector<int> {10, 10}));
+  std::deque<std::vector<int>> fakeHistory;
+  fakeHistory.push_back(std::vector<int> {10, 10});
+  ON_CALL(mock_snake, getLocationHistory()).WillByDefault(Return(fakeHistory));
+  EXPECT_CALL(mock_snake, getLocation()).Times(1);
+  EXPECT_CALL(mock_snake, getLocationHistory()).Times(1);
+  EXPECT_CALL(mock_food, getLocation()).Times(1);
+  pGame_->checkCollisions();
 }
