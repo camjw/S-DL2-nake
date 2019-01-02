@@ -4,16 +4,17 @@ using ::testing::Return;
 using ::testing::AtLeast;
 using ::testing::_;
 
-GameTest::GameTest() : mock_renderer(), mock_snake(mock_renderer), mock_food(mock_renderer),
+GameTest::GameTest() : mock_renderer(), mock_background(mock_renderer), mock_snake(mock_renderer), mock_food(mock_renderer),
 mock_fps_timer(), mock_cap_timer() {
 };
 
 void GameTest::SetUp() {
-  pGame_ = new Game(&mock_renderer, &mock_snake, &mock_food, &mock_fps_timer, &mock_cap_timer, 10, 10, 10, 24);
+  pGame_ = new Game(&mock_renderer, &mock_background, &mock_snake, &mock_food, &mock_fps_timer, &mock_cap_timer, 10, 10, 10, 24);
   ON_CALL(mock_snake, getLocation()).WillByDefault(Return(std::vector<int> {10, 10}));
   std::deque<std::vector<int>> fakeHistory;
   fakeHistory.push_back(std::vector<int> {10, 10});
   ON_CALL(mock_snake, getLocationHistory()).WillByDefault(Return(fakeHistory));
+
 }
 
 void GameTest::TearDown() {
