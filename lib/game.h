@@ -14,6 +14,7 @@ class Game {
     void checkCollisions();
     void run();
     void reset();
+    int getScore();
     virtual ~Game() {};
 
   private:
@@ -22,6 +23,9 @@ class Game {
     void showSnakeDeath();
     void adjustFrameRate(int countedFrames);
     int screen_fps, screen_ticks_per_frame, grid_height;
+    int score = 0;
+    void increaseScore();
+    void resetScore();
     Renderer *renderer;
     Background *background;
     Snake *snake;

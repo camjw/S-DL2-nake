@@ -34,11 +34,12 @@ void Game::checkCollisions() {
   if (foodLocation[0] == snakeLocation[0] && foodLocation[1] == snakeLocation[1]) {
     food->resetLocation(snakeLocationHistory);
     snake->grow();
+    increaseScore();
   }
 }
 
 void Game::redrawScreen() {
-  background->draw();
+  background->draw(score);
   snake->draw();
   food->draw();
   checkCollisions();
@@ -46,7 +47,7 @@ void Game::redrawScreen() {
 }
 
 void Game::showSnakeDeath() {
-  background->draw();
+  background->draw(score);
   snake->showDeath();
 }
 
@@ -80,4 +81,17 @@ void Game::run() {
 void Game::reset() {
   snake->reset();
   food->reset();
+  resetScore();
+}
+
+void Game::increaseScore() {
+  score += 10;
+}
+
+void Game::resetScore() {
+  score = 0;
+}
+
+int Game::getScore() {
+  return score;
 }
