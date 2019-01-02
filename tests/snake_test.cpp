@@ -2,11 +2,11 @@
 
 using ::testing::ElementsAre;
 
-SnakeTest::SnakeTest() : mock_window() {
+SnakeTest::SnakeTest() : mock_renderer() {
 };
 
 void SnakeTest::SetUp() {
-  pSnake_ = new Snake(mock_window, 10, 10, 10, 10, 10, 10, 10);
+  pSnake_ = new Snake(mock_renderer, 10, 10, 10, 10, 10, 10, 10);
 }
 
 void SnakeTest::TearDown() {

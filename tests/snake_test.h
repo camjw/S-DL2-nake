@@ -2,7 +2,7 @@
 #define SNAKE_TEST_H
 #include <gtest/gtest.h>
 #include "../lib/snake.h"
-#include "../lib/mocks/mock_window.h"
+#include "../lib/mocks/mock_renderer.h"
 
 class SnakeTest : public ::testing::Test {
   public:
@@ -10,7 +10,7 @@ class SnakeTest : public ::testing::Test {
     virtual void SetUp();
     virtual void TearDown();
     Snake * pSnake_;
-    MockWindow mock_window;
+    MockRenderer mock_renderer;
 };
 
 #endif

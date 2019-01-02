@@ -4,12 +4,12 @@ using ::testing::Return;
 using ::testing::AtLeast;
 using ::testing::_;
 
-GameTest::GameTest() : mock_window(), mock_snake(mock_window), mock_food(mock_window),
+GameTest::GameTest() : mock_renderer(), mock_snake(mock_renderer), mock_food(mock_renderer),
 mock_fps_timer(), mock_cap_timer() {
 };
 
 void GameTest::SetUp() {
-  pGame_ = new Game(&mock_window, &mock_snake, &mock_food, &mock_fps_timer, &mock_cap_timer, 10, 10, 10, 24);
+  pGame_ = new Game(&mock_renderer, &mock_snake, &mock_food, &mock_fps_timer, &mock_cap_timer, 10, 10, 10, 24);
   ON_CALL(mock_snake, getLocation()).WillByDefault(Return(std::vector<int> {10, 10}));
   std::deque<std::vector<int>> fakeHistory;
   fakeHistory.push_back(std::vector<int> {10, 10});
@@ -22,7 +22,7 @@ void GameTest::TearDown() {
 
 TEST_F(GameTest, NoEventPollEventsTest) {
   EXPECT_CALL(mock_snake, pollEvents(_)).Times(0);
-  EXPECT_CALL(mock_window, pollEvents(_)).Times(0);
+  EXPECT_CALL(mock_renderer, pollEvents(_)).Times(0);
   pGame_->pollEvents();
 }
 

@@ -3,11 +3,11 @@
 
 using ::testing::ElementsAre;
 
-FoodTest::FoodTest() : mock_window() {
+FoodTest::FoodTest() : mock_renderer() {
 };
 
 void FoodTest::SetUp() {
-  pFood_ = new Food(mock_window, 10, 10, 10, 10, 10, 10, 10, 0);
+  pFood_ = new Food(mock_renderer, 10, 10, 10, 10, 10, 10, 10, 0);
 }
 
 void FoodTest::TearDown() {
