@@ -18,7 +18,7 @@ class Game {
     void redrawScreen();
     void showSnakeDeath();
     void adjustFrameRate(int countedFrames);
-    int screen_fps, screen_ticks_per_frame;
+    int screen_fps, screen_ticks_per_frame, grid_height;
     Window *window;
     Snake *snake;
     Food *food;

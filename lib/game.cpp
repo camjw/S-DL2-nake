@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game(Window *w, Snake *s, Food *f, Timer *fps, Timer *cap, int g_width, int g_height, int g_stride, int screen_fps) :
-window(w), snake(s), food(f), fpsTimer(fps), capTimer(cap), screen_fps(screen_fps), screen_ticks_per_frame(1000/screen_fps) {
+window(w), snake(s), food(f), fpsTimer(fps), capTimer(cap), screen_fps(screen_fps), screen_ticks_per_frame(1000/screen_fps), grid_height(g_height) {
 }
 
 void Game::pollEvents() {
@@ -29,7 +29,7 @@ void Game::redrawScreen() {
   snake->draw();
   food->draw();
   checkCollisions();
-  snake->checkSelfEat();
+  snake->checkDeath(grid_height);
 }
 
 void Game::showSnakeDeath() {

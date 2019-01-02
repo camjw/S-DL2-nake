@@ -94,6 +94,19 @@ std::vector<int> Snake::checkSelfEat() {
   return locationHistory[0];
 }
 
+void Snake::checkHitWall(int grid_height) {
+  std::vector<int> headSquare = locationHistory[locationHistory.size() -1];
+  if (headSquare.at(0) >= (grid_height - 1) * _stride || headSquare.at(0) <= 0) {
+    alive = false;
+  } else if (headSquare.at(1) >= (grid_height - 1) * _stride || headSquare.at(1) <= 0) {
+    alive = false;
+  }
+}
+
+void Snake::checkDeath(int grid_height) {
+  checkSelfEat();
+  checkHitWall(grid_height);
+}
 bool Snake::isDead() {
   return !alive;
 }

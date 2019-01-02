@@ -15,7 +15,7 @@ class Snake : public Window {
     virtual std::deque<std::vector<int>> getLocationHistory();
     enum directions { UP, DOWN, LEFT, RIGHT };
     virtual void grow();
-    std::vector<int> checkSelfEat();
+    void checkDeath(int grid_width);
     bool isDead();
     void showDeath();
     virtual ~Snake() {};
@@ -23,6 +23,8 @@ class Snake : public Window {
   private:
     void updateLocationHistory();
     void updateDirection();
+    std::vector<int> checkSelfEat();
+    void checkHitWall(int grid_width);
     std::deque<std::vector<int>> locationHistory;
     directions currentDir = RIGHT;
     directions attemptedDir = RIGHT;
