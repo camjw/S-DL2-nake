@@ -1,6 +1,7 @@
 language: cpp
 
 before_script:
+  - brew update
   - brew install sdl2
   - brew install sdl2_ttf
 
