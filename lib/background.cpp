@@ -1,3 +1,4 @@
+#include <iostream>
 #include "background.h"
 
 Background::Background(const Renderer &renderer, int width, int height, int stride) :
@@ -6,7 +7,8 @@ Renderer(renderer), _width(width), _height(height), _stride(stride) {
     printf("TTF_Init: %s\n", TTF_GetError());
     exit(2);
   } else {
-    Sans = TTF_OpenFont("assets/lazy.ttf", 20);
+    normalFont = TTF_OpenFont("assets/ARCADECLASSIC.ttf", 40);
+    titleFont = TTF_OpenFont("assets/ARCADECLASSIC.ttf", 80);
   }
 }
 
@@ -28,28 +30,51 @@ void Background::drawBorder() {
   SDL_RenderDrawRect(_renderer, &border_2);
 }
 
-const char* Background::getScoreString(int score) {
-  std::string score_string = "Current score: " + std::to_string(score);
+const char* Background::getScoreChars(int score) {
+  std::string score_string = " " + std::to_string(score) + " ";
   const char* output = score_string.c_str();
   return output;
 }
 
 void Background::drawScore(int score) {
-  SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans, getScoreString(score), White);
-  SDL_Texture* Message = SDL_CreateTextureFromSurface(_renderer, surfaceMessage);
+  renderText("Current score", (_height) * _stride + _stride / 2, _stride * 5, 160, 30, false);
+  renderText(getScoreChars(score), (_height) * _stride + _stride / 2, _stride * 6, 160, 160, true);
+}
 
-  SDL_Rect Message_rect;
-  Message_rect.x = 610;
-  Message_rect.y = 10;
-  Message_rect.w = 100;
-  Message_rect.h = 20;
+void Background::drawHighScore() {
+  renderText(" High score ", (_height) * _stride + _stride / 2, _stride * 14.5, 160, 30, false);
+  renderText("10000", (_height) * _stride + _stride / 2, _stride * 15.5, 160, 160, true);
+}
 
-  SDL_RenderCopy(_renderer, Message, NULL, &Message_rect);
-  getScoreString(score);
+void Background::renderText(const char* text, int x, int y, int w, int h, bool title) {
+  TTF_Font* renderedFont;
+  if (title) {
+    renderedFont = titleFont;
+  } else {
+    renderedFont = normalFont;
+  }
+  SDL_Surface* renderedSurface = TTF_RenderText_Solid(renderedFont, text, White);
+  SDL_Texture* renderedTexture = SDL_CreateTextureFromSurface(_renderer, renderedSurface);
+  SDL_Rect renderedRect { x, y, w, h };
+  SDL_RenderCopy(_renderer, renderedTexture, NULL, &renderedRect);
+}
+
+void Background::drawTitle() {
+  renderText("SNAKE", (_height) * _stride + _stride / 2 , _stride, 160, 60, true);
+}
+
+void Background::drawInstructions() {
+  // should fix renderText function to allocate a certain width per character
+  renderText("Arrows to move", (_height) * _stride + _stride / 2 , _stride * 24, 160, 30, false);
+  renderText("Space to restart", (_height) * _stride + _stride / 2 , _stride * 25.5, 160, 30, false);
+  renderText("Esc to quit", (_height) * _stride + _stride / 2 , _stride * 27, 160, 30, false);
 }
 
 void Background::draw(int score) {
   drawBackground();
   drawBorder();
+  drawTitle();
+  drawInstructions();
   drawScore(score);
+  drawHighScore();
 }

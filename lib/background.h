@@ -15,10 +15,15 @@ class Background : public Renderer {
     void drawBorder();
     void drawBackground();
     void drawScore(int score);
-    const char* getScoreString(int score);
+    void drawTitle();
+    void drawInstructions();
+    void drawHighScore();
+    void renderText(const char* text, int x, int y, int w, int h, bool title);
+    const char* getScoreChars(int score);
     int _width, _height, _stride;
     SDL_Color White = {255, 255, 255};
-    TTF_Font* Sans;
+    TTF_Font* normalFont;
+    TTF_Font* titleFont;
 };
 
 #endif
