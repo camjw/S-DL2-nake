@@ -60,20 +60,27 @@ void Window::pollEvents(SDL_Event &event) {
   }
 }
 
-void Window::draw() const {
+void Window::drawBackground() {
   SDL_RenderPresent(_renderer);
   SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
   SDL_RenderClear(_renderer);
 }
 
+void Window::drawBorder() {
+  SDL_Rect border_1 { _stride, _stride, (_height - 2)* _stride, (_height - 2)* _stride };
+  SDL_Rect border_2 { _stride - 1, _stride - 1, (_height - 2)* _stride + 2, (_height - 2)* _stride + 2 };
+  SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
+  SDL_RenderDrawRect(_renderer, &border_1);
+  SDL_RenderDrawRect(_renderer, &border_2);
+}
+
+void Window::draw() {
+  drawBackground();
+  drawBorder();
+}
+
 void Window::renderRect(std::vector<int> rectCoords, int stride, int r, int g, int b, int a) {
-  SDL_Rect rect;
-
-  rect.w = stride - 2;
-  rect.h = stride - 2;
-  rect.x = rectCoords.at(0) + 1;
-  rect.y = rectCoords.at(1) + 1;
-
+  SDL_Rect rect { rectCoords.at(0) + 1, rectCoords.at(1) + 1, stride -2, stride - 2 };
   SDL_SetRenderDrawColor(_renderer, r, g, b, a);
   SDL_RenderFillRect(_renderer, &rect);
 }
