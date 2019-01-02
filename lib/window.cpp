@@ -67,7 +67,7 @@ void Window::drawBackground() {
 }
 
 void Window::drawBorder() {
-  SDL_Rect border_1 { _stride, _stride, (_height - 2)* _stride, (_height - 2)* _stride };
+  SDL_Rect border_1 { _stride, _stride, (_height - 2) * _stride, (_height - 2)* _stride };
   SDL_Rect border_2 { _stride - 1, _stride - 1, (_height - 2)* _stride + 2, (_height - 2)* _stride + 2 };
   SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
   SDL_RenderDrawRect(_renderer, &border_1);

@@ -15,7 +15,7 @@ const int SCREEN_FPS = 24;
 int main( int argc, char* args[] ) {
   Window window("Snake", GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE);
   Snake snake(window, GRID_STRIDE, 20, 20, 255, 255, 255, 255);
-  Food food(window, GRID_WIDTH, GRID_WIDTH, GRID_STRIDE, 192, 192, 192, 255, time(0));
+  Food food(window, GRID_HEIGHT, GRID_HEIGHT, GRID_STRIDE, 192, 192, 192, 255, time(0));
   Timer fpsTimer;
   Timer capTimer;
   Game game(&window, &snake, &food, &fpsTimer, &capTimer, GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE, SCREEN_FPS);
