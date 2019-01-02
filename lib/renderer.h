@@ -9,13 +9,10 @@ class Renderer {
     Renderer(const std::string &title, int width, int height, int stride);
     virtual ~Renderer();
     void pollEvents(SDL_Event &event);
-    void draw();
     inline bool isClosed() const { return _closed; }
     void renderRect(std::vector<int> rectCoords, int stride, int r, int g, int b, int a);
 
   private:
-    void drawBorder();
-    void drawBackground();
     virtual bool init();
     std::string _title;
     int _width;

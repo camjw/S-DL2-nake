@@ -1,7 +1,7 @@
 #include "game.h"
 
-Game::Game(Renderer *r, Snake *s, Food *f, Timer *fps, Timer *cap, int g_width, int g_height, int g_stride, int screen_fps) :
-renderer(r), snake(s), food(f), fpsTimer(fps), capTimer(cap), screen_fps(screen_fps), screen_ticks_per_frame(1000/screen_fps), grid_height(g_height) {
+Game::Game(Renderer *r, Background *b, Snake *s, Food *f, Timer *fps, Timer *cap, int g_width, int g_height, int g_stride, int screen_fps) :
+renderer(r), background(b), snake(s), food(f), fpsTimer(fps), capTimer(cap), screen_fps(screen_fps), screen_ticks_per_frame(1000/screen_fps), grid_height(g_height) {
 }
 
 void Game::pollEvents() {
@@ -38,7 +38,7 @@ void Game::checkCollisions() {
 }
 
 void Game::redrawScreen() {
-  renderer->draw();
+  background->draw();
   snake->draw();
   food->draw();
   checkCollisions();
@@ -46,7 +46,7 @@ void Game::redrawScreen() {
 }
 
 void Game::showSnakeDeath() {
-  renderer->draw();
+  background->draw();
   snake->showDeath();
 }
 

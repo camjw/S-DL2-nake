@@ -10,6 +10,7 @@ class MockFood : public Food {
     virtual ~MockFood() {};
     MOCK_METHOD0(getLocation, std::vector<int>());
     MOCK_METHOD1(resetLocation, void(std::deque<std::vector<int>>));
+    MOCK_METHOD0(draw, void());
 };
 
 #endif

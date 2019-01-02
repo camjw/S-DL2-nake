@@ -14,6 +14,7 @@ class MockSnake : public Snake {
     MOCK_METHOD0(getLocation, std::vector<int>());
     MOCK_METHOD0(getLocationHistory, std::deque<std::vector<int>>());
     MOCK_METHOD0(grow, void());
+    MOCK_METHOD0(draw, void());
 };
 
 #endif

@@ -8,7 +8,7 @@
 class Snake : public Renderer {
   public:
     Snake(const Renderer &renderer, int stride, int x, int y, int r, int g, int b, int a);
-    void draw();
+    virtual void draw();
     void move();
     void pollEvents(SDL_Event &event);
     virtual std::vector<int> getLocation();
