@@ -67,16 +67,16 @@ void Snake::pollEvents(SDL_Event &event) {
       switch (event.key.keysym.sym) {
         case SDLK_LEFT:
           attemptedDir = LEFT;
-        break;
+          break;
         case SDLK_RIGHT:
           attemptedDir = RIGHT;
-        break;
+          break;
         case SDLK_UP:
           attemptedDir = UP;
-        break;
+          break;
         case SDLK_DOWN:
           attemptedDir = DOWN;
-        break;
+          break;
       }
     }
   }
@@ -117,4 +117,16 @@ void Snake::showDeath() {
   }
   std::vector<int> deathSquare = locationHistory[locationHistory.size() -1];
   renderRect(deathSquare, _stride, 255, 0, 0, 255);
+}
+
+void Snake::reset() {
+  _x = 20;
+  _y = 20;
+  _currentLength = 4;
+  alive = true;
+  currentDir = RIGHT;
+  while (locationHistory.size() > 0) {
+    locationHistory.pop_front();
+  }
+  locationHistory.push_back(std::vector<int> { _x, _y });
 }

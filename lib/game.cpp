@@ -10,6 +10,17 @@ void Game::pollEvents() {
   if (SDL_PollEvent(&event)) {
     window->pollEvents(event);
     snake->pollEvents(event);
+    pollReset(event);
+  }
+}
+
+void Game::pollReset(SDL_Event &event) {
+  if (event.type == SDL_KEYDOWN) {
+    switch (event.key.keysym.sym) {
+      case SDLK_SPACE:
+        reset();
+        break;
+    }
   }
 }
 
@@ -63,3 +74,8 @@ void Game::run() {
     updateDisplay = !updateDisplay;
   }
 };
+
+void Game::reset() {
+  snake->reset();
+  food->reset();
+}

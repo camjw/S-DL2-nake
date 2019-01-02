@@ -18,6 +18,7 @@ class Snake : public Window {
     void checkDeath(int grid_width);
     bool isDead();
     void showDeath();
+    virtual void reset();
     virtual ~Snake() {};
 
   private:
