@@ -1,4 +1,4 @@
 #include "mock_food.h"
 
-MockFood::MockFood(MockWindow &mock_window) : Food(mock_window, 10, 10, 10, 255, 255, 255, 255, 0) {
+MockFood::MockFood(MockRenderer &mock_renderer) : Food(mock_renderer, 10, 10, 10, 255, 255, 255, 255, 0) {
 };
