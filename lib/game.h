@@ -1,14 +1,14 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-#include "window.h"
+#include "renderer.h"
 #include "snake.h"
 #include "timer.h"
 #include "food.h"
 
 class Game {
   public:
-    Game(Window *w, Snake *s, Food *f, Timer *fps, Timer *cap, int g_width, int g_height, int g_stride, int screen_fps);
+    Game(Renderer *w, Snake *s, Food *f, Timer *fps, Timer *cap, int g_width, int g_height, int g_stride, int screen_fps);
     void pollEvents();
     void checkCollisions();
     void run();
@@ -21,7 +21,7 @@ class Game {
     void showSnakeDeath();
     void adjustFrameRate(int countedFrames);
     int screen_fps, screen_ticks_per_frame, grid_height;
-    Window *window;
+    Renderer *renderer;
     Snake *snake;
     Food *food;
     Timer *fpsTimer, *capTimer;

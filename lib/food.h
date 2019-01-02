@@ -3,11 +3,11 @@
 #include <vector>
 #include <deque>
 #include <cstdlib>
-#include "window.h"
+#include "renderer.h"
 
-class Food : public Window {
+class Food : public Renderer {
   public:
-    Food(const Window &window, int grid_w, int grid_h, int grid_stride, int r, int g, int b, int a, int random_seed);
+    Food(const Renderer &renderer, int grid_w, int grid_h, int grid_stride, int r, int g, int b, int a, int random_seed);
     virtual void draw();
     virtual std::vector<int> getLocation();
     virtual void resetLocation(std::deque<std::vector<int>> snakeLocationHistory);

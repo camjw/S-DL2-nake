@@ -1,8 +1,8 @@
 #include "snake.h"
 #include <iostream>
 
-Snake::Snake(const Window &window, int stride, int x, int y, int r, int g, int b, int a) :
-  Window(window), _stride(stride), _x(x), _y(y), _r(r), _g(g), _b(b), _a(a), _dx(0), _dy(0)
+Snake::Snake(const Renderer &renderer, int stride, int x, int y, int r, int g, int b, int a) :
+  Renderer(renderer), _stride(stride), _x(x), _y(y), _r(r), _g(g), _b(b), _a(a), _dx(0), _dy(0)
 {
 }
 

@@ -3,11 +3,11 @@
 #include <vector>
 #include <deque>
 #include <algorithm>
-#include "window.h"
+#include "renderer.h"
 
-class Snake : public Window {
+class Snake : public Renderer {
   public:
-    Snake(const Window &window, int stride, int x, int y, int r, int g, int b, int a);
+    Snake(const Renderer &renderer, int stride, int x, int y, int r, int g, int b, int a);
     void draw();
     void move();
     void pollEvents(SDL_Event &event);

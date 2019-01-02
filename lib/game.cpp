@@ -1,14 +1,14 @@
 #include "game.h"
 
-Game::Game(Window *w, Snake *s, Food *f, Timer *fps, Timer *cap, int g_width, int g_height, int g_stride, int screen_fps) :
-window(w), snake(s), food(f), fpsTimer(fps), capTimer(cap), screen_fps(screen_fps), screen_ticks_per_frame(1000/screen_fps), grid_height(g_height) {
+Game::Game(Renderer *r, Snake *s, Food *f, Timer *fps, Timer *cap, int g_width, int g_height, int g_stride, int screen_fps) :
+renderer(r), snake(s), food(f), fpsTimer(fps), capTimer(cap), screen_fps(screen_fps), screen_ticks_per_frame(1000/screen_fps), grid_height(g_height) {
 }
 
 void Game::pollEvents() {
   SDL_Event event;
 
   if (SDL_PollEvent(&event)) {
-    window->pollEvents(event);
+    renderer->pollEvents(event);
     snake->pollEvents(event);
     pollReset(event);
   }
@@ -38,7 +38,7 @@ void Game::checkCollisions() {
 }
 
 void Game::redrawScreen() {
-  window->draw();
+  renderer->draw();
   snake->draw();
   food->draw();
   checkCollisions();
@@ -46,7 +46,7 @@ void Game::redrawScreen() {
 }
 
 void Game::showSnakeDeath() {
-  window->draw();
+  renderer->draw();
   snake->showDeath();
 }
 
@@ -63,7 +63,7 @@ void Game::run() {
   int countedFrames = 0;
   fpsTimer->start();
   bool updateDisplay = true;
-  while (!window->isClosed()) {
+  while (!renderer->isClosed()) {
     capTimer->start();
     pollEvents();
     if (updateDisplay && !snake->isDead()) {
