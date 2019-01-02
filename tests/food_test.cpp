@@ -16,13 +16,13 @@ void FoodTest::TearDown() {
 
 TEST_F(FoodTest, LocationTest)
 {
-  EXPECT_THAT(pFood_->getLocation(), ElementsAre(0, 10));
+  EXPECT_THAT(pFood_->getLocation(), ElementsAre(30, 40));
 }
 
 TEST_F(FoodTest, ResetLocationTest)
 {
   std::deque<std::vector<int>> fakeLocationHistory;
-  fakeLocationHistory.push_back(std::vector<int> {0, 0});
+  fakeLocationHistory.push_back(std::vector<int> {30, 40});
   pFood_->resetLocation(fakeLocationHistory);
-  EXPECT_THAT(pFood_->getLocation(), ElementsAre(50, 20));
+  EXPECT_THAT(pFood_->getLocation(), ElementsAre(80, 10));
 }
