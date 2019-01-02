@@ -5,7 +5,7 @@
 class Timer {
   public:
     Timer();
-    void start();
+    virtual void start();
     void stop();
     void pause();
     void unpause();

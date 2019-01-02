@@ -9,6 +9,7 @@ class MockFood : public Food {
     MockFood(MockWindow &mock_window);
     virtual ~MockFood() {};
     MOCK_METHOD0(getLocation, std::vector<int>());
+    MOCK_METHOD1(resetLocation, void(std::deque<std::vector<int>>));
 };
 
 #endif

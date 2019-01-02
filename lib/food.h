@@ -10,7 +10,7 @@ class Food : public Window {
     Food(const Window &window, int grid_w, int grid_h, int grid_stride, int r, int g, int b, int a, int random_seed);
     virtual void draw();
     virtual std::vector<int> getLocation();
-    void resetLocation(std::deque<std::vector<int>> snakeLocationHistory);
+    virtual void resetLocation(std::deque<std::vector<int>> snakeLocationHistory);
     virtual ~Food();
 
   private:
