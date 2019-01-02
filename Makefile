@@ -1,6 +1,9 @@
 game:
 	g++ main.cpp lib/*.cpp -o play -lSDL2-2.0.0 -lSDL2_image -lSDL2_ttf -lgtest -lpthread -std=c++11
 
+debug:
+	g++ -g main.cpp lib/*.cpp -o debug -lSDL2-2.0.0 -lSDL2_image -lSDL2_ttf -lgtest -lpthread -std=c++11
+
 INSTALLBINDIR := /usr/local/bin
 
 install:
