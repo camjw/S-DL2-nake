@@ -19,11 +19,8 @@ std::vector<int> Food::getLocation() {
 };
 
 void Food::resetLocation(std::deque<std::vector<int>> snakeLocationHistory) {
-  location[0] = ((rand() % (_grid_w - 2)) + 1) * _grid_stride;
-  location[1] = ((rand() % (_grid_h - 2)) + 1) * _grid_stride;
-
-  if (std::find(snakeLocationHistory.begin(), snakeLocationHistory.end(), location) != snakeLocationHistory.end()) {
-    resetLocation(snakeLocationHistory);
+  while (std::find(snakeLocationHistory.begin(), snakeLocationHistory.end(), location) != snakeLocationHistory.end()) {
+    reset();
   }
 }
 

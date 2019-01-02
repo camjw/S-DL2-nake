@@ -15,11 +15,13 @@ void Game::pollEvents() {
 }
 
 void Game::pollReset(SDL_Event &event) {
-  if (event.type == SDL_KEYDOWN) {
-    switch (event.key.keysym.sym) {
-      case SDLK_SPACE:
+  if (snake->isDead()) {
+    if (event.type == SDL_KEYDOWN) {
+      switch (event.key.keysym.sym) {
+        case SDLK_SPACE:
         reset();
         break;
+      }
     }
   }
 }

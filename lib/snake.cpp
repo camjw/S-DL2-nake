@@ -125,6 +125,7 @@ void Snake::reset() {
   _currentLength = 4;
   alive = true;
   currentDir = RIGHT;
+  attemptedDir = RIGHT;
   while (locationHistory.size() > 0) {
     locationHistory.pop_front();
   }
