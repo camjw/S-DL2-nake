@@ -7,6 +7,7 @@
 #include "lib/food.h"
 #include "lib/timer.h"
 #include "lib/game.h"
+#include "lib/scorer.h"
 
 const int GRID_WIDTH = 40;
 const int GRID_HEIGHT = 30;
@@ -20,6 +21,7 @@ int main( int argc, char* args[] ) {
   Background background(renderer, GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE);
   Timer fpsTimer;
   Timer capTimer;
-  Game game(&renderer, &background, &snake, &food, &fpsTimer, &capTimer, GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE, SCREEN_FPS);
+  Scorer scorer;
+  Game game(&renderer, &background, &snake, &food, &fpsTimer, &capTimer, &scorer, GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE, SCREEN_FPS);
   game.run();
 }
