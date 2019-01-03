@@ -7,6 +7,7 @@
 #include "../lib/mocks/mock_snake.h"
 #include "../lib/mocks/mock_food.h"
 #include "../lib/mocks/mock_timer.h"
+#include "../lib/mocks/mock_scorer.h"
 
 class GameTest : public ::testing::Test {
   public:
@@ -19,6 +20,7 @@ class GameTest : public ::testing::Test {
     MockFood mock_food;
     MockBackground mock_background;
     MockTimer mock_fps_timer, mock_cap_timer;
+    MockScorer mock_scorer;
 };
 
 #endif
