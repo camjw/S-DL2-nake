@@ -1,7 +1,7 @@
 #include "game.h"
 
-Game::Game(Renderer *r, Background *b, Snake *s, Food *f, Timer *fps, Timer *cap, int g_width, int g_height, int g_stride, int screen_fps) :
-renderer(r), background(b), snake(s), food(f), fpsTimer(fps), capTimer(cap), screen_fps(screen_fps), screen_ticks_per_frame(1000/screen_fps), grid_height(g_height) {
+Game::Game(Renderer *r, Background *b, Snake *s, Food *f, Timer *fps, Timer *cap, Scorer *sc, int g_width, int g_height, int g_stride, int screen_fps) :
+renderer(r), background(b), snake(s), food(f), fpsTimer(fps), capTimer(cap), screen_fps(screen_fps), scorer(sc), screen_ticks_per_frame(1000/screen_fps), grid_height(g_height) {
 }
 
 void Game::pollEvents() {
@@ -34,12 +34,12 @@ void Game::checkCollisions() {
   if (foodLocation[0] == snakeLocation[0] && foodLocation[1] == snakeLocation[1]) {
     food->resetLocation(snakeLocationHistory);
     snake->grow();
-    increaseScore();
+    scorer->increaseScore();
   }
 }
 
 void Game::redrawScreen() {
-  background->draw(score, score);
+  background->draw(scorer->getScore(), scorer->getHighScore());
   snake->draw();
   food->draw();
   checkCollisions();
@@ -47,7 +47,7 @@ void Game::redrawScreen() {
 }
 
 void Game::showSnakeDeath() {
-  background->draw(score, score);
+  background->draw(scorer->getScore(), scorer->getHighScore());
   snake->showDeath();
 }
 
@@ -81,17 +81,5 @@ void Game::run() {
 void Game::reset() {
   snake->reset();
   food->reset();
-  resetScore();
-}
-
-void Game::increaseScore() {
-  score += 10;
-}
-
-void Game::resetScore() {
-  score = 0;
-}
-
-int Game::getScore() {
-  return score;
+  scorer->resetScore();
 }
