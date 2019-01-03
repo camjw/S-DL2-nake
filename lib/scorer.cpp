@@ -1,7 +1,7 @@
 #include "scorer.h"
 #include <iostream>
 
-Scorer::Scorer() : currentScore(0), currentHighScore(30) {
+Scorer::Scorer() : currentScore(0), currentHighScore(0) {
   loadHighScore();
 }
 
@@ -10,13 +10,13 @@ int Scorer::getHighScore() {
 }
 
 void Scorer::loadHighScore() {
-  std::ifstream in(".assets/highscore.bin", std::ios::in | std::ios::binary);
+  std::ifstream in(".assets/data/highscore.bin", std::ios::in | std::ios::binary);
   in.read((char*)&currentHighScore, sizeof(int));
   std::cout << currentHighScore;
 }
 
 void Scorer::setHighScore() {
-  std::ofstream ofile(".assets/highscore.bin", std::ios::binary);
+  std::ofstream ofile(".assets/data/highscore.bin", std::ios::binary);
   ofile.write((char*) &currentScore, sizeof(int));
   currentHighScore = currentScore;
 }
