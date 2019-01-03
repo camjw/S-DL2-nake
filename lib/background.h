@@ -18,12 +18,11 @@ class Background : public Renderer {
     void drawTitle();
     void drawInstructions();
     void drawHighScore(int highScore);
-    void renderText(const char* text, int x, int y, int w, int h, bool title);
+    void renderText(const char* text, int x, int y, int w, int h);
     char const * getScoreChars(int score);
     int _width, _height, _stride;
     SDL_Color White = {255, 255, 255};
-    TTF_Font* normalFont;
-    TTF_Font* titleFont;
+    TTF_Font* gameFont;
 };
 
 #endif

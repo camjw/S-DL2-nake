@@ -8,8 +8,7 @@ Renderer(renderer), _width(width), _height(height), _stride(stride) {
     printf("TTF_Init: %s\n", TTF_GetError());
     exit(2);
   } else {
-    normalFont = TTF_OpenFont(".assets/ARCADECLASSIC.ttf", 40);
-    titleFont = TTF_OpenFont(".assets/ARCADECLASSIC.ttf", 80);
+    gameFont = TTF_OpenFont(".assets/fonts/ARCADECLASSIC.ttf", 40);
   }
 }
 
@@ -38,37 +37,32 @@ char const * Background::getScoreChars(int score) {
 }
 
 void Background::drawScore(int score) {
-  renderText("Current score", (_height) * _stride + _stride / 2, _stride * 5, 160, 30, false);
-  renderText(getScoreChars(score), (_height) * _stride + _stride / 2, _stride * 6, 160, 160, true);
+  renderText("Current score", (_height) * _stride + _stride / 2, _stride * 5, 160, 30);
+  renderText(getScoreChars(score), (_height) * _stride + _stride / 2, _stride * 6, 160, 160);
 }
 
 void Background::drawHighScore(int score) {
-  renderText(" High score ", (_height) * _stride + _stride / 2, _stride * 14.5, 160, 30, false);
-  renderText(getScoreChars(score), (_height) * _stride + _stride / 2, _stride * 15.5, 160, 160, true);
+  renderText(" High score ", (_height) * _stride + _stride / 2, _stride * 14.5, 160, 30);
+  renderText(getScoreChars(score), (_height) * _stride + _stride / 2, _stride * 15.5, 160, 160);
 }
 
-void Background::renderText(const char* text, int x, int y, int w, int h, bool title) {
+void Background::renderText(const char* text, int x, int y, int w, int h) {
   TTF_Font* renderedFont;
-  if (title) {
-    renderedFont = titleFont;
-  } else {
-    renderedFont = normalFont;
-  }
-  SDL_Surface* renderedSurface = TTF_RenderText_Solid(renderedFont, text, White);
+  SDL_Surface* renderedSurface = TTF_RenderText_Solid(gameFont, text, White);
   SDL_Texture* renderedTexture = SDL_CreateTextureFromSurface(_renderer, renderedSurface);
   SDL_Rect renderedRect { x, y, w, h };
   SDL_RenderCopy(_renderer, renderedTexture, NULL, &renderedRect);
 }
 
 void Background::drawTitle() {
-  renderText("SNAKE", (_height) * _stride + _stride / 2 , _stride, 160, 60, true);
+  renderText("SNAKE", (_height) * _stride + _stride / 2 , _stride, 160, 60);
 }
 
 void Background::drawInstructions() {
   // should fix renderText function to allocate a certain width per character
-  renderText("Arrows to move", (_height) * _stride + _stride / 2 , _stride * 24, 160, 30, false);
-  renderText("Space to restart", (_height) * _stride + _stride / 2 , _stride * 25.5, 160, 30, false);
-  renderText("Esc to quit", (_height) * _stride + _stride / 2 , _stride * 27, 160, 30, false);
+  renderText("Arrows to move", (_height) * _stride + _stride / 2 , _stride * 24, 160, 30);
+  renderText("Space to restart", (_height) * _stride + _stride / 2 , _stride * 25.5, 160, 30);
+  renderText("Esc to quit", (_height) * _stride + _stride / 2 , _stride * 27, 160, 30);
 }
 
 void Background::draw(int score, int highScore) {
