@@ -16,7 +16,7 @@ const int SCREEN_FPS = 24;
 
 int main( int argc, char* args[] ) {
   Renderer renderer("Snake", GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE);
-  Snake snake(renderer, GRID_STRIDE, 20, 20, 255, 255, 255, 255);
+  Snake snake(renderer, GRID_HEIGHT, GRID_STRIDE, 255, 255, 255, 255, time(0) + 1);
   Food food(renderer, GRID_HEIGHT, GRID_HEIGHT, GRID_STRIDE, 192, 192, 192, 255, time(0));
   Background background(renderer, GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE);
   Timer fpsTimer;
