@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include "background.h"
 
 Background::Background(const Renderer &renderer, int width, int height, int stride) :
@@ -30,10 +31,10 @@ void Background::drawBorder() {
   SDL_RenderDrawRect(_renderer, &border_2);
 }
 
-const char* Background::getScoreChars(int score) {
-  std::string score_string = " " + std::to_string(score) + " ";
-  const char* output = score_string.c_str();
-  return output;
+char const * Background::getScoreChars(int score) {
+  std::ostringstream buffer;
+  buffer << score;
+  return buffer.str().c_str();
 }
 
 void Background::drawScore(int score) {
@@ -41,9 +42,9 @@ void Background::drawScore(int score) {
   renderText(getScoreChars(score), (_height) * _stride + _stride / 2, _stride * 6, 160, 160, true);
 }
 
-void Background::drawHighScore() {
+void Background::drawHighScore(int score) {
   renderText(" High score ", (_height) * _stride + _stride / 2, _stride * 14.5, 160, 30, false);
-  renderText("10000", (_height) * _stride + _stride / 2, _stride * 15.5, 160, 160, true);
+  renderText(getScoreChars(score), (_height) * _stride + _stride / 2, _stride * 15.5, 160, 160, true);
 }
 
 void Background::renderText(const char* text, int x, int y, int w, int h, bool title) {
@@ -70,11 +71,11 @@ void Background::drawInstructions() {
   renderText("Esc to quit", (_height) * _stride + _stride / 2 , _stride * 27, 160, 30, false);
 }
 
-void Background::draw(int score) {
+void Background::draw(int score, int highScore) {
   drawBackground();
   drawBorder();
   drawTitle();
   drawInstructions();
   drawScore(score);
-  drawHighScore();
+  drawHighScore(highScore);
 }

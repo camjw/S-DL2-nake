@@ -39,7 +39,7 @@ void Game::checkCollisions() {
 }
 
 void Game::redrawScreen() {
-  background->draw(score);
+  background->draw(score, score);
   snake->draw();
   food->draw();
   checkCollisions();
@@ -47,7 +47,7 @@ void Game::redrawScreen() {
 }
 
 void Game::showSnakeDeath() {
-  background->draw(score);
+  background->draw(score, score);
   snake->showDeath();
 }
 
