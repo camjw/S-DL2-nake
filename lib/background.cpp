@@ -8,8 +8,8 @@ Renderer(renderer), _width(width), _height(height), _stride(stride) {
     printf("TTF_Init: %s\n", TTF_GetError());
     exit(2);
   } else {
-    normalFont = TTF_OpenFont("assets/ARCADECLASSIC.ttf", 40);
-    titleFont = TTF_OpenFont("assets/ARCADECLASSIC.ttf", 80);
+    normalFont = TTF_OpenFont(".assets/ARCADECLASSIC.ttf", 40);
+    titleFont = TTF_OpenFont(".assets/ARCADECLASSIC.ttf", 80);
   }
 }
 
