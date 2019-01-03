@@ -14,7 +14,7 @@ Renderer::~Renderer() {
 }
 
 bool Renderer::init() {
-  if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) {
     std::cerr << "SDL failed to init" << std::endl;
     return 0;
   }

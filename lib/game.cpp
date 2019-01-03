@@ -1,7 +1,7 @@
 #include "game.h"
 
-Game::Game(Renderer *r, Background *b, Snake *s, Food *f, Timer *fps, Timer *cap, Scorer *sc, int g_width, int g_height, int g_stride, int screen_fps) :
-renderer(r), background(b), snake(s), food(f), fpsTimer(fps), capTimer(cap), screen_fps(screen_fps), scorer(sc), screen_ticks_per_frame(1000/screen_fps), grid_height(g_height) {
+Game::Game(Renderer *r, Background *b, Snake *s, Food *f, Timer *fps, Timer *cap, Scorer *sc, Speaker *sp, int g_width, int g_height, int g_stride, int screen_fps) :
+renderer(r), background(b), snake(s), food(f), fpsTimer(fps), capTimer(cap), screen_fps(screen_fps), scorer(sc), speaker(sp), screen_ticks_per_frame(1000/screen_fps), grid_height(g_height) {
 }
 
 void Game::pollEvents() {

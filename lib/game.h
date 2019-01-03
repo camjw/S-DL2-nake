@@ -7,10 +7,11 @@
 #include "timer.h"
 #include "food.h"
 #include "scorer.h"
+#include "speaker.h"
 
 class Game {
   public:
-    Game(Renderer *w, Background *b, Snake *s, Food *f, Timer *fps, Timer *cap, Scorer *sc, int g_width, int g_height, int g_stride, int screen_fps);
+    Game(Renderer *w, Background *b, Snake *s, Food *f, Timer *fps, Timer *cap, Scorer *sc, Speaker *sp, int g_width, int g_height, int g_stride, int screen_fps);
     void pollEvents();
     void checkCollisions();
     void run();
@@ -29,4 +30,5 @@ class Game {
     Food *food;
     Timer *fpsTimer, *capTimer;
     Scorer *scorer;
+    Speaker *speaker;
 };
