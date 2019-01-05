@@ -1,9 +1,9 @@
 language: cpp
 
 before_install:
-- sudo apt-get install -y  libsdl2-dev
-- sudo apt-get install -y  libsdl2-mixer-dev
-- sudo apt-get install -y  libsdl2-ttf-dev
+- sudo aptitude install -y  libsdl2-dev
+- sudo aptitude install -y  libsdl2-mixer-dev
+- sudo aptitude install -y  libsdl2-ttf-dev
 
 script:
   - make
