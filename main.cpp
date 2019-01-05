@@ -13,7 +13,7 @@
 const int GRID_WIDTH = 40;
 const int GRID_HEIGHT = 30;
 const int GRID_STRIDE = 20;
-const int SCREEN_FPS = 24;
+const int SCREEN_FPS = 48;
 
 int main( int argc, char* args[] ) {
   Renderer renderer("Snake", GRID_WIDTH, GRID_HEIGHT, GRID_STRIDE);
