@@ -133,6 +133,7 @@ void Snake::checkHitWall(int grid_height) {
 void Snake::checkDeath(int grid_height) {
   checkSelfEat();
   checkHitWall(grid_height);
+
 }
 bool Snake::isDead() {
   return !alive;

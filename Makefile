@@ -1,5 +1,5 @@
-game:
-	g++ main.cpp lib/*.cpp -o play -lSDL2-2.0.0 -lSDL2_ttf -lSDL2_mixer -lgtest -lpthread -std=c++11
+snake:
+	g++ main.cpp lib/*.cpp -o snake -lSDL2-2.0.0 -lSDL2_ttf -lSDL2_mixer -lgtest -lpthread -std=c++11
 
 debug:
 	g++ -g main.cpp lib/*.cpp -o debug -lSDL2-2.0.0 -lSDL2_ttf -lSDL2_mixer -lgtest -lpthread -std=c++11
@@ -7,7 +7,7 @@ debug:
 INSTALLBINDIR := /usr/local/bin
 
 install:
-	cp play $(INSTALLBINDIR)
+	cp snake $(INSTALLBINDIR)
 
 test:
 	g++ tests/main.cpp tests/*_test.cpp lib/mocks/*.cpp lib/*.cpp -o test -lSDL2-2.0.0 -lSDL2_ttf -lSDL2_mixer -lgtest -lgmock -lpthread -std=c++11
