@@ -22,6 +22,7 @@ class Game {
     void redrawScreen();
     void pollReset(SDL_Event &event);
     void showSnakeDeath();
+    void playHighScore();
     void adjustFrameRate(int countedFrames);
     int screen_fps, screen_ticks_per_frame, grid_height;
     Renderer *renderer;

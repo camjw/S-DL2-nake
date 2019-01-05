@@ -35,6 +35,15 @@ void Game::checkCollisions() {
     food->resetLocation(snakeLocationHistory);
     snake->grow();
     scorer->increaseScore();
+    speaker->getFood();
+  }
+}
+
+void Game::playHighScore() {
+  int currentScore = scorer->getScore();
+  int highScore = scorer->getHighScore();
+  if (currentScore >= highScore) {
+    speaker->highScore();
   }
 }
 
@@ -44,11 +53,13 @@ void Game::redrawScreen() {
   food->draw();
   checkCollisions();
   snake->checkDeath(grid_height);
+  playHighScore();
 }
 
 void Game::showSnakeDeath() {
   background->draw(scorer->getScore(), scorer->getHighScore());
   snake->showDeath();
+  speaker->death();
 }
 
 void Game::adjustFrameRate(int countedFrames) {
@@ -63,23 +74,24 @@ void Game::adjustFrameRate(int countedFrames) {
 void Game::run() {
   int countedFrames = 0;
   fpsTimer->start();
-  bool updateDisplay = true;
+  int updateDisplay = 0;
   while (!renderer->isClosed()) {
     capTimer->start();
     pollEvents();
-    if (updateDisplay && !snake->isDead()) {
+    if ((updateDisplay == 0) && !snake->isDead()) {
       redrawScreen();
     }
     if (snake->isDead()) {
       showSnakeDeath();
     }
     adjustFrameRate(countedFrames);
-    updateDisplay = !updateDisplay;
+    updateDisplay = (updateDisplay + 1) % 4;
   }
 };
 
 void Game::reset() {
   snake->reset();
   food->reset();
-  scorer->resetScore();
+  scorer->reset();
+  speaker->reset();
 }
