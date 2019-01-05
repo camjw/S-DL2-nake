@@ -15,7 +15,6 @@ int Scorer::getHighScore() {
 void Scorer::loadHighScore() {
   std::ifstream in(".assets/data/highscore.bin", std::ios::in | std::ios::binary);
   in.read((char*)&currentHighScore, sizeof(int));
-  std::cout << currentHighScore;
 }
 
 void Scorer::setHighScore() {
