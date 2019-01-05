@@ -1,6 +1,7 @@
 sudo: required
 dist: trusty
 language: cpp
+os: osx
 
 before_install:
   - sudo apt-get update -qq
