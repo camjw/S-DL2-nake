@@ -5,6 +5,7 @@
 class Scorer {
   public:
     Scorer();
+    Scorer(int highScore);
     virtual ~Scorer() {};
     int getHighScore();
     void loadHighScore();
@@ -12,7 +13,7 @@ class Scorer {
     void checkHighScore();
     void increaseScore();
     int getScore();
-    void resetScore();
+    void reset();
 
   private:
     int currentHighScore, currentScore;

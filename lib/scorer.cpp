@@ -5,6 +5,9 @@ Scorer::Scorer() : currentScore(0), currentHighScore(0) {
   loadHighScore();
 }
 
+Scorer::Scorer(int highScore) : currentScore(0), currentHighScore(highScore) {
+}
+
 int Scorer::getHighScore() {
   return currentHighScore;
 }
@@ -28,7 +31,7 @@ void Scorer::increaseScore() {
   }
 }
 
-void Scorer::resetScore() {
+void Scorer::reset() {
   currentScore = 0;
 }
 
