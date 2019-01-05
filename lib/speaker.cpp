@@ -11,7 +11,11 @@ Speaker::Speaker() {
 
 Speaker::~Speaker() {
   Mix_FreeChunk(foodFX);
+  Mix_FreeChunk(deathFX);
+  Mix_FreeChunk(highScoreFX);
   foodFX = NULL;
+  deathFX = NULL;
+  highScoreFX = NULL;
   Mix_Quit();
 }
 

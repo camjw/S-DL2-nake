@@ -42,7 +42,7 @@ void Game::checkCollisions() {
 void Game::playHighScore() {
   int currentScore = scorer->getScore();
   int highScore = scorer->getHighScore();
-  if (currentScore >= highScore) {
+  if (currentScore > highScore) {
     speaker->highScore();
   }
 }
