@@ -1,9 +1,9 @@
 sudo: required
-dist: trusty
-language: cpp
 os: osx
+language: cpp
 
 before_install:
+  - brew install sdl2
   - sudo apt-get update -qq
   - sudo apt-get install -qq libsdl2-2.0
   - sudo apt-get install -qq libsdl2-dev
