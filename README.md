@@ -59,4 +59,8 @@ I would be really happy to receive a PR on this or any other matter.
 
 ## License
 
-This repo is MIT licensed. Please see LICENSE.md.
+This repo is MIT licensed.
+
+## Acknowledgements
+
+I learned a lot about SDL2 from LazyFoo, their tutorials can be found [here](http://lazyfoo.net/). I also got the sounds used in this game from SoundBible which can be found [here](http://soundbible.com).
