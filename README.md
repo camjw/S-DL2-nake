@@ -41,7 +41,7 @@ and then can be executed by running `./test`. In the `lib` folder, there is a su
 
 ## Contributing
 
-The game is mostly finished, though I would like to improve the text rendering. At the moment test rendering is done in the Background class through the `renderText` method:
+The game is mostly finished, though I would like to improve the text rendering. At the moment text rendering is done in the Background class through the `renderText` method:
 
 ```c++
 void Background::renderText(const char* text, int x, int y, int w, int h) {
